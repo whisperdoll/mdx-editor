@@ -41,7 +41,6 @@ import classNames from 'classnames'
 import { exportLexicalTreeToMdast } from '../../exportMarkdownFromLexical'
 import { importMdastTreeToLexical } from '../../importMarkdownToLexical'
 import styles from '../../styles/ui.module.css'
-import { SharedHistoryPlugin } from './SharedHistoryPlugin'
 import { mergeRegister } from '@lexical/utils'
 import { VoidEmitter } from '../../utils/voidEmitter'
 import { isPartOftheEditorUI } from '../../utils/isPartOftheEditorUI'
@@ -110,7 +109,6 @@ export function useMdastNodeUpdater<T extends Mdast.RootContent>() {
   return function updateMdastNode(node: Partial<T>) {
     parentEditor.update(
       () => {
-        $addUpdateTag('history-push')
         const currentNode = $getNodeByKey(lexicalNode.getKey()) as DirectiveNode | LexicalJsxNode | null
         if (currentNode) {
           currentNode.setMdastNode({ ...mdastNode, ...node } as any)
@@ -342,7 +340,6 @@ export const NestedLexicalEditor = function <T extends Mdast.RootContent>(props:
         placeholder={null}
         ErrorBoundary={LexicalErrorBoundary}
       />
-      <SharedHistoryPlugin />
       {nestedEditorChildren.map((Child, index) => (
         <Child key={index} />
       ))}

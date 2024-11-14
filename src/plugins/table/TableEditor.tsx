@@ -23,7 +23,6 @@ import { importMdastTreeToLexical } from '../../importMarkdownToLexical'
 import { lexicalTheme } from '../../styles/lexicalTheme'
 import { TableNode } from './TableNode'
 
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin.js'
 import { mergeRegister } from '@lexical/utils'
 import * as RadixToolbar from '@radix-ui/react-toolbar'
 import classNames from 'classnames'
@@ -465,7 +464,6 @@ const CellEditor: React.FC<CellProps> = ({ focus, setActiveCell, parentEditor, l
   return (
     <LexicalNestedComposer initialEditor={editor}>
       <RichTextPlugin contentEditable={<ContentEditable />} placeholder={<div></div>} ErrorBoundary={LexicalErrorBoundary} />
-      <HistoryPlugin />
     </LexicalNestedComposer>
   )
 }

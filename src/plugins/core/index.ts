@@ -1,5 +1,4 @@
 import { realmPlugin } from '../../RealmWithPlugins'
-import { createEmptyHistoryState } from '@lexical/react/LexicalHistoryPlugin.js'
 import { $isHeadingNode, HeadingTagType } from '@lexical/rich-text'
 import { $setBlocksType } from '@lexical/selection'
 import { $findMatchingParent, $insertNodeToNearestRoot, $wrapNodeInElement } from '@lexical/utils'
@@ -65,7 +64,6 @@ import { MdastHTMLVisitor } from './MdastHTMLVisitor'
 import { MdastParagraphVisitor } from './MdastParagraphVisitor'
 import { MdastRootVisitor } from './MdastRootVisitor'
 import { MdastTextVisitor } from './MdastTextVisitor'
-import { SharedHistoryPlugin } from './SharedHistoryPlugin'
 import { DirectiveDescriptor } from '../directives'
 import { CodeBlockEditorDescriptor } from '../codeblock'
 import { comment, commentFromMarkdown } from '../../mdastUtilHtmlComment'
@@ -698,9 +696,6 @@ export const nestedEditorChildren$ = Cell<React.ComponentType[]>([])
  */
 export const addNestedEditorChild$ = Appender(nestedEditorChildren$)
 
-/** @internal */
-export const historyState$ = Cell(createEmptyHistoryState())
-
 /**
  * Holds the current block type of the selection (i.e. Heading, Paragraph, etc).
  * @group Core
@@ -877,7 +872,6 @@ export const corePlugin = realmPlugin<{
         LexicalGenericHTMLVisitor
       ],
 
-      [addComposerChild$]: SharedHistoryPlugin,
       [contentEditableClassName$]: params?.contentEditableClassName,
       [toMarkdownOptions$]: params?.toMarkdownOptions,
       [autoFocus$]: params?.autoFocus,
