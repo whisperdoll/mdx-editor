@@ -6,7 +6,7 @@
     "url": "https://github.com/mdx-editor/editor/issues",
     "email": "petyo@virtuoso.dev"
   },
-  "private": false,
+  "private": true,
   "sideEffects": [
     "*.css"
   ],
